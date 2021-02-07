@@ -29,7 +29,7 @@ const getCameraSelection = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(device => device.kind === 'videoinput');
     const options = videoDevices.map(videoDevice => {
-        return `<option value="${videoDevice.deviceId}">${videoDevice.deviceId</option>`;
+        return `<option value="${videoDevice.deviceId}">${videoDevice.deviceId}</option>`;
     });
     cameraOptions.innerHTML = options.join('');
 };
