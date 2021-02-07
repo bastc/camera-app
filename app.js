@@ -7,7 +7,7 @@ function cameraStart() {
     navigator.mediaDevices
         .getUserMedia(constraints)
         .then(function(stream) {
-            const track = stream.getTracks()[3];
+            const track = stream.getTracks()[0];
             cameraView.srcObject = stream;
         })
         .catch(function(error) {
