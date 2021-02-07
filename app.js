@@ -28,11 +28,10 @@ const constraints = {
 const getCameraSelection = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(device => device.kind === 'videoinput');
-    console.dir( videoDevices );
     const options = videoDevices.map(videoDevice => {
-        return `<option value="${videoDevice.deviceId}=">${videoDevice.deviceId}</option>`;
+        return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
     });
-    cameraOptions.innerHTML += options.join('');
+    cameraOptions.innerHTML = options.join('');
 };
 
 play.onclick = () => {

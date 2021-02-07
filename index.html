@@ -1,35 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang=”en”>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Name of your awesome camera app -->
+    <title>Camera App</title>
+    <!-- Link to your main style sheet-->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
 <body>
-<div class="display-cover">
-    <video autoplay></video>
-    <canvas class="d-none"></canvas>
+<!-- Camera -->
+<!-- Camera -->
+<main id="camera">
+    <!-- Camera view -->
+    <video id="camera--view" autoplay playsinline></video>
 
-    <div class="video-options">
-        <select name="" id="" class="custom-select">
-            <option value="">Select camera</option>
-        </select>
-    </div>
+    <!-- Camera sensor -->
+    <canvas id="camera--sensor"></canvas>
 
-    <img class="screenshot-image d-none" alt="">
+    <!-- Camera output -->
+    <img src="//:0" alt="" id="camera--output">
 
-    <div class="controls">
-        <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
-        <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
-        <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
-    </div>
-</div>
-
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="script.js"></script>
+    <!-- Camera trigger -->
+    <button id="camera--trigger">Take a picture</button>
+</main>
+<!-- Reference to your JavaScript file -->
+<script src="app.js"></script>
 </body>
 </html>
