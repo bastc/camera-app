@@ -2,7 +2,8 @@ const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger")
-const devices = navigator.mediaDevices.enumerateDevices();
+const tempStream = await navigator.mediaDevices.getUserMedia({video:true})
+const devices = navigator.mediaDevices.enumerateDevices()
 let frontDeviceId;
 let backDeviceId;
 
