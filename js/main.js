@@ -22,7 +22,7 @@ function gotDevices(deviceInfos) {
     });
     for (let i = 0; i !== deviceInfos.length; ++i) {
         const deviceInfo = deviceInfos[i];
-        if (deviceInfo.label.indexOf('back') != -1) {
+        // if (deviceInfo.label.indexOf('back') != -1) {
             const option = document.createElement('option');
             option.value = deviceInfo.deviceId;
             if (deviceInfo.kind === 'videoinput') {
@@ -31,7 +31,7 @@ function gotDevices(deviceInfos) {
             } else {
                 console.log('Some other kind of source/device: ', deviceInfo);
             }
-        }
+        // }
     }
     selectors.forEach((select, selectorIndex) => {
         if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
