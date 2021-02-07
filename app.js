@@ -1,4 +1,4 @@
-var constraints = { video: { facingMode: "user" }, audio: false };
+var constraints = { video: { facingMode: "environment" }, audio: false };
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
@@ -11,7 +11,7 @@ function cameraStart() {
             cameraView.srcObject = stream;
         })
         .catch(function(error) {
-            console.error("Oops. Something is broken.", error);
+            console.error('Oops. Something is broken.', error);
         });
 }
 cameraTrigger.onclick = function() {
