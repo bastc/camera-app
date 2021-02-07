@@ -22,13 +22,15 @@ function gotDevices(deviceInfos) {
     });
     for (let i = 0; i !== deviceInfos.length; ++i) {
         const deviceInfo = deviceInfos[i];
-        const option = document.createElement('option');
-        option.value = deviceInfo.deviceId;
-        if (deviceInfo.kind === 'videoinput') {
-            option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
-            videoSelect.appendChild(option);
-        } else {
-            console.log('Some other kind of source/device: ', deviceInfo);
+        if (deviceInfo.label.indexOf('back') != -1) {
+            const option = document.createElement('option');
+            option.value = deviceInfo.deviceId;
+            if (deviceInfo.kind === 'videoinput') {
+                option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+                videoSelect.appendChild(option);
+            } else {
+                console.log('Some other kind of source/device: ', deviceInfo);
+            }
         }
     }
     selectors.forEach((select, selectorIndex) => {
