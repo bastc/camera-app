@@ -2,16 +2,17 @@ const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger")
-const devices = navigator.mediaDevices.enumerateDevices()
-let frontDeviceId
-let backDeviceId
+const devices = navigator.mediaDevices.enumerateDevices();
+let frontDeviceId;
+let backDeviceId;
+
 if (devices.length > 0) {
     /* defaults so all this will work on a desktop */
     frontDeviceId = devices[0].deviceId;
     backDeviceId = devices[0].deviceId;
 }
 /* look for front and back devices */
-devices.forEach (device => {
+let forEach = devices.forEach (device => {
     if( device.kind === 'videoinput' ) {
         if( device.label && device.label.length > 0 ) {
             if( device.label.toLowerCase().indexOf( 'back' ) >= 0 )
