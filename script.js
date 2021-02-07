@@ -54,6 +54,7 @@ play.onclick = () => {
 
 const startStream = async (constraints) => {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    alert( constraints.deviceId );
     handleStream(stream);
 };
 
