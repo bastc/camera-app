@@ -31,7 +31,7 @@ const getCameraSelection = async () => {
     const options = videoDevices.map(videoDevice => {
         return `<option value="${videoDevice.deviceId}">${videoDevice.deviceId}</option>`;
     });
-    cameraOptions.innerHTML = options.join('');
+    cameraOptions.innerHTML += options.join('');
 };
 
 play.onclick = () => {
@@ -54,7 +54,6 @@ play.onclick = () => {
 
 const startStream = async (constraints) => {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    alert( constraints.deviceId );
     handleStream(stream);
 };
 
