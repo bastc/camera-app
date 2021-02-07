@@ -15,7 +15,6 @@ export default {
         if (browserName === 'firefox' || browserName === 'safari') {
             browser
                 .url(url)
-                .waitForElementVisible('#audioSource option:nth-of-type(1)', 1000, 'Check that there is at least one audio source')
                 .waitForElementVisible('#videoSource option:nth-of-type(1)', 1000, 'Check that there is at least one video source')
                 .end();
             return;
@@ -23,8 +22,6 @@ export default {
 
         browser
             .url(url)
-            .waitForElementVisible('#audioSource option:nth-of-type(1)', 1000, 'Check that there is at least one audio source')
-            .waitForElementVisible('#audioOutput option:nth-of-type(1)', 1000, 'Check that there is at least one audio output')
             .waitForElementVisible('#videoSource option:nth-of-type(1)', 1000, 'Check that there is at least one video source')
             .end();
     }
