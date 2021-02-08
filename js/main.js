@@ -99,6 +99,7 @@ function clearphoto() {
     photo.setAttribute('src', data);
 }
 
+
 function takepicture() {
     var context = canvas.getContext('2d');
     var videoElement = document.querySelector('video');
