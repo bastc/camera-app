@@ -59,6 +59,7 @@ function gotStream(stream) {
     if (isNaN(height)) {
         height = width / (4/3);
     }
+
     // Refresh button list in case labels have become available
     return navigator.mediaDevices.enumerateDevices();
 }
@@ -105,7 +106,12 @@ function takepicture() {
 
         var data = canvas.toDataURL('image/png');
         photo.setAttribute('src', data);
-
+        if (window.stream) {
+            window.stream.getTracks().forEach(track => {
+                track.stop();
+            });
+        }
+        videoElement.hide();
     } else {
         clearphoto();
     }
