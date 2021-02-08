@@ -80,6 +80,46 @@ function start() {
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
 
+    compatibility.requestAnimationFrame(play);
+
+    if (video.readyState === video.HAVE_ENOUGH_DATA && video.videoWidth > 0) {
+
+        // Draw video overlay:
+        canvas.width = ~~(100 * video.videoWidth / video.videoHeight);
+        canvas.height = 100;
+        context.drawImage(video, 0, 0, canvas.clientWidth, canvas.clientHeight);
+
+        // Prepare the detector once the video dimensions are known:
+        if (!detector) {
+            var width = ~~(100 * video.videoWidth / video.videoHeight);
+            var height = 100;
+            var detector = new objectdetect.detector(width, height, 1.1, objectdetect.frontalface);
+        }
+
+        // Perform the actual detection:
+        var coords = detector.detect(canvas);
+        for (var i = 0; i < coords.length; ++i) {
+            var coord = coords[i];
+
+            // Rescale coordinates from detector to video coordinate space:
+            coord[0] *= video.videoWidth / detector.canvas.width;
+            coord[1] *= video.videoHeight / detector.canvas.height;
+            coord[2] *= video.videoWidth / detector.canvas.width;
+            coord[3] *= video.videoHeight / detector.canvas.height;
+
+            // Draw coordinates on video overlay:
+            context.beginPath();
+            context.lineWidth = '2';
+            context.fillStyle = 'rgba(0, 255, 255, 0.5)';
+            context.fillRect(
+                coord[0] / video.videoWidth * canvas.clientWidth,
+                coord[1] / video.videoHeight * canvas.clientHeight,
+                coord[2] / video.videoWidth * canvas.clientWidth,
+                coord[3] / video.videoHeight * canvas.clientHeight);
+            context.stroke();
+        }
+    }
+
     startbutton.addEventListener('click', function(ev){
         takepicture();
         ev.preventDefault();
@@ -111,7 +151,6 @@ function takepicture() {
                 track.stop();
             });
         }
-        videoElement.hide();
     } else {
         clearphoto();
     }
