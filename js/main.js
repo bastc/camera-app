@@ -80,7 +80,7 @@ function start() {
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
 
-    compatibility.requestAnimationFrame(play);
+    // compatibility.requestAnimationFrame(play);
 
     if (video.readyState === video.HAVE_ENOUGH_DATA && video.videoWidth > 0) {
 
