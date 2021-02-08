@@ -10,8 +10,7 @@
 window.onload = function() {
     const videoElement = document.querySelector('video'),
         canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        detector;
+        context = canvas.getContext('2d');
     const videoSelect = document.querySelector('select#videoSource');
     const selectors = [videoSelect];
     var width = 800;
