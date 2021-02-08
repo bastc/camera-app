@@ -51,6 +51,14 @@ navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
 function gotStream(stream) {
     window.stream = stream; // make stream available to console
     videoElement.srcObject = stream;
+    height = videoElement.videoHeight / (videoElement.videoWidth/width);
+
+    // Firefox currently has a bug where the height can't be read from
+    // the video, so we will make assumptions if this happens.
+
+    if (isNaN(height)) {
+        height = width / (4/3);
+    }
     // Refresh button list in case labels have become available
     return navigator.mediaDevices.enumerateDevices();
 }
@@ -77,6 +85,30 @@ function start() {
     }, false);
 
     clearphoto();
+}
+
+function clearphoto() {
+    var context = canvas.getContext('2d');
+    context.fillStyle = "#AAA";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+}
+
+function takepicture() {
+    var context = canvas.getContext('2d');
+    if (width && height) {
+        canvas.width = width;
+        canvas.height = height;
+        context.drawImage(video, 0, 0, width, height);
+
+        var data = canvas.toDataURL('image/png');
+        photo.setAttribute('src', data);
+
+    } else {
+        clearphoto();
+    }
 }
 
 videoSelect.onchange = start;
