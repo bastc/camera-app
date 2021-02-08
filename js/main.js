@@ -7,6 +7,11 @@
 */
 
 'use strict';
+<script src="../js/objectdetect.js"></script>
+<script src="../js/objectdetect.frontalface.js"></script>
+<script src="../js/objectdetect.profileface.js"></script>
+<script src="../js/objectdetect.mouth.js"></script>
+<script src="../js/objectdetect.eye.js"></script>
 
 const videoElement = document.querySelector('video');
 const videoSelect = document.querySelector('select#videoSource');
