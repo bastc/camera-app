@@ -20,6 +20,10 @@ function gotDevices(deviceInfos) {
             select.removeChild(select.firstChild);
         }
     });
+    const option = document.createElement('option');
+    option.value = '';
+    option.text = 'Selecteer een camera';
+    videoSelect.append(option);
     for (let i = 0; i !== deviceInfos.length; ++i) {
         const deviceInfo = deviceInfos[i];
         // if (deviceInfo.label.indexOf('back') != -1) {
