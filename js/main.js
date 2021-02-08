@@ -70,6 +70,11 @@ function start() {
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
 }
 
+neemfotoknop.addEventListener('click', function(ev){
+    neemFoto();
+    ev.preventDefault();
+}, false);
+
 videoSelect.onchange = start;
 
 // start();
