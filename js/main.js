@@ -119,7 +119,7 @@ function takepicture() {
 
 function detectFaces(canvas) {
     // Detect faces in the image:
-    var rects = detector.detect(canvas);
+    var rects = detector.detect(canvas, true, 1);
 
     // Draw rectangles around detected faces:
     for (var i = 0; i < rects.length; ++i) {
