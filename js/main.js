@@ -13,6 +13,9 @@ const videoSelect = document.querySelector('select#videoSource');
 const selectors = [videoSelect];
 var width = 800;
 var height = 0;
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var detector;
 
 function gotDevices(deviceInfos) {
     // Handles being called several times to update labels. Preserve values.
@@ -105,6 +108,7 @@ function takepicture() {
 
         // var data = canvas.toDataURL('image/png');
         // photo.setAttribute('src', data);
+        var classifier = objectdetect.frontalface;
         detector = new objectdetect.detector(canvas.width, canvas.height, 1.2, classifier);
         detectFaces(canvas);
 
