@@ -13,10 +13,6 @@ const videoSelect = document.querySelector('select#videoSource');
 const selectors = [videoSelect];
 var width = 800;
 var height = 0;
-const canvas = document.getElementById('canvas');
-const context = canvas.getContext('2d');
-var detector;
-const classifier = objectdetect.frontalface;
 
 function gotDevices(deviceInfos) {
     // Handles being called several times to update labels. Preserve values.
