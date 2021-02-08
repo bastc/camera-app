@@ -13,11 +13,10 @@ const videoSelect = document.querySelector('select#videoSource');
 const selectors = [videoSelect];
 var width = 800;
 var height = 0;
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var size = 250;
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
 var detector;
-var classifier = objectdetect.frontalface;
+const classifier = objectdetect.frontalface;
 
 function gotDevices(deviceInfos) {
     // Handles being called several times to update labels. Preserve values.
@@ -115,6 +114,21 @@ function takepicture() {
 
     } else {
         clearphoto();
+    }
+}
+
+function detectFaces(canvas) {
+    // Detect faces in the image:
+    var rects = detector.detect(canvas);
+
+    // Draw rectangles around detected faces:
+    for (var i = 0; i < rects.length; ++i) {
+        var coord = rects[i];
+        context.beginPath();
+        context.lineWidth = '' + coord[4] * .5;
+        context.strokeStyle = 'rgba(0, 255, 255, 0.75)';
+        context.rect(coord[0], coord[1], coord[2], coord[3]);
+        context.stroke();
     }
 }
 
