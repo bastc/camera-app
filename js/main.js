@@ -11,6 +11,8 @@
 const videoElement = document.querySelector('video');
 const videoSelect = document.querySelector('select#videoSource');
 const selectors = [videoSelect];
+var width = 800;
+var height = 0;
 
 function gotDevices(deviceInfos) {
     // Handles being called several times to update labels. Preserve values.
@@ -68,12 +70,14 @@ function start() {
         video: {deviceId: videoSource ? {exact: videoSource} : undefined}
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
-}
 
-neemfotoknop.addEventListener('click', function(ev){
-    neemFoto();
-    ev.preventDefault();
-}, false);
+    startbutton.addEventListener('click', function(ev){
+        takepicture();
+        ev.preventDefault();
+    }, false);
+
+    clearphoto();
+}
 
 videoSelect.onchange = start;
 
