@@ -8,7 +8,10 @@
 
 'use strict';
 
-const videoElement = document.querySelector('video');
+const videoElement = document.querySelector('video'),
+    canvas = document.createElement('canvas'),
+    context = canvas.getContext('2d'),
+    detector;
 const videoSelect = document.querySelector('select#videoSource');
 const selectors = [videoSelect];
 var width = 800;
@@ -80,7 +83,15 @@ function start() {
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
 
-    // compatibility.requestAnimationFrame(play);
+    startbutton.addEventListener('click', function(ev){
+        takepicture();
+        ev.preventDefault();
+    }, false);
+
+    clearphoto();
+}
+
+function detect() {
 
     if (video.readyState === video.HAVE_ENOUGH_DATA && video.videoWidth > 0) {
 
@@ -119,13 +130,6 @@ function start() {
             context.stroke();
         }
     }
-
-    startbutton.addEventListener('click', function(ev){
-        takepicture();
-        ev.preventDefault();
-    }, false);
-
-    clearphoto();
 }
 
 function clearphoto() {
