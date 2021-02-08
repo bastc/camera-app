@@ -45,10 +45,10 @@
                     height = width / (4/3);
                 }
 
-                video.setAttribute('width', width);
-                video.setAttribute('height', height);
-                canvas.setAttribute('width', width);
-                canvas.setAttribute('height', height);
+                // video.setAttribute('width', width);
+                // video.setAttribute('height', height);
+                // canvas.setAttribute('width', width);
+                // canvas.setAttribute('height', height);
                 streaming = true;
             }
         }, false);
@@ -80,6 +80,8 @@
     // other changes before drawing it.
 
     function takepicture() {
+        var width = video.width;
+        var height = video.height;
         var context = canvas.getContext('2d');
         if (width && height) {
             canvas.width = width;
