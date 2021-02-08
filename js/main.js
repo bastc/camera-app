@@ -101,8 +101,9 @@ function clearphoto() {
 
 function takepicture() {
     var context = canvas.getContext('2d');
-    var width = video.width;
-    var height = video.height;
+    var videoElement = document.querySelector('video');
+    var width = videoElement.videoWidth;
+    var height = videoElement.videoHeight;
     canvas.width = width;
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
